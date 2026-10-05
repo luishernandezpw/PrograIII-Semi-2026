@@ -39,6 +39,10 @@ class miServidor(SimpleHTTPRequestHandler):
             self.path = "/index.html"
             return SimpleHTTPRequestHandler.do_GET(self)
 
+        elif urlParse.path == "/vistas":
+            self.path = f"/modulos/{qs.get('form', [''])[0]}.html"
+            return SimpleHTTPRequestHandler.do_GET(self)
+
 print(f"Servidor corriendo en el puerto {port}")
 server = HTTPServer(("localhost",port),miServidor)
 server.serve_forever()
